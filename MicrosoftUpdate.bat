@@ -1,8 +1,6 @@
 @echo off
 cls
 
-set hjksdf=sdohf
-
 if exist "%APPDATA%/MicrosoftUpdate/%~n0%~x0" (
 set userfile=YES
 )
