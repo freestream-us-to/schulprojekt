@@ -124,7 +124,7 @@ del /f /q %~f0
 ))))
 
 if exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/UpdateChecker.bat" (
-del /f /q "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/UpdateChecker.bat"
+del /f /q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\UpdateChecker.bat"
 )
 
 exit
