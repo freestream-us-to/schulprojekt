@@ -163,10 +163,10 @@ powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebR
 
 :: delete old files
 if exist "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.bat" (
-    del /f /q "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.bat"
+    del /f /q "%PROGRAMDATA%\WindowsDefenderSecurity\MicrosoftUpdate.bat"
 )
 if exist "%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.bat" (
-    del /f /q "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.bat"
+    del /f /q "%APPDATA%\WindowsDefenderSecurity\MicrosoftUpdate.bat"
 )
 
 endlocal
