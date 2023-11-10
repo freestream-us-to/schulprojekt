@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 cls
 
-set "version=2.3"
+set "version=2.4"
 
 
 rem check for usb drive
