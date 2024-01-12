@@ -8,13 +8,13 @@ FolderPath = WshShell.ExpandEnvironmentStrings("%PROGRAMDATA%\OutlookNative\")
 If FSO.FolderExists(FolderPath) Then
     Set Folder = FSO.GetFolder(FolderPath)
     
-    latestVersion = "0.0"
+    latestVersion = "0"
     latestFile = ""
     
     For Each File In Folder.Files
         parts = Split(FSO.GetBaseName(File.Name), ".")
-        If UBound(parts) >= 1 Then
-            currentVersion = parts(UBound(parts) - 1) & "." & parts(UBound(parts))
+        If UBound(parts) >= 0 Then
+            currentVersion = parts(UBound(parts))
             
             If CompareVersions(currentVersion, latestVersion) > 0 Then
                 latestVersion = currentVersion
@@ -33,19 +33,11 @@ If FSO.FolderExists(FolderPath) Then
 End If
 
 Function CompareVersions(version1, version2)
-    Dim aVersion1, aVersion2
-    aVersion1 = Split(version1, ".")
-    aVersion2 = Split(version2, ".")
-
-    For i = 0 To UBound(aVersion1)
-        If CInt(aVersion1(i)) < CInt(aVersion2(i)) Then
-            CompareVersions = -1
-            Exit Function
-        ElseIf CInt(aVersion1(i)) > CInt(aVersion2(i)) Then
-            CompareVersions = 1
-            Exit Function
-        End If
-    Next
-
-    CompareVersions = 0
+    If CInt(version1) < CInt(version2) Then
+        CompareVersions = -1
+    ElseIf CInt(version1) > CInt(version2) Then
+        CompareVersions = 1
+    Else
+        CompareVersions = 0
+    End If
 End Function
