@@ -12,19 +12,21 @@ If FSO.FolderExists(FolderPath) Then
     latestFile = ""
     
     For Each File In Folder.Files
-        parts = Split(FSO.GetBaseName(File.Name), ".")
-        If UBound(parts) >= 0 Then
-            currentVersion = parts(UBound(parts))
-            
-            If CompareVersions(currentVersion, latestVersion) > 0 Then
-                latestVersion = currentVersion
-                latestFile = File.Path
+        If LCase(FSO.GetExtensionName(File.Name)) = "jar" Or LCase(FSO.GetExtensionName(File.Name)) = "bat" Then
+            parts = Split(FSO.GetBaseName(File.Name), ".")
+            If UBound(parts) >= 0 Then
+                currentVersion = parts(UBound(parts))
+                
+                If CompareVersions(currentVersion, latestVersion) > 0 Then
+                    latestVersion = currentVersion
+                    latestFile = File.Path
+                End If
             End If
         End If
     Next
 
     If latestFile <> "" Then
-        If FSO.GetExtensionName(latestFile) = "jar" Then
+        If LCase(FSO.GetExtensionName(latestFile)) = "jar" Then
             WshShell.Run "java -jar """ & latestFile & """", 0, True
         Else
             WshShell.Run """" & latestFile & """", 0, True
