@@ -13,9 +13,9 @@ if exist "%APPDATA%\NuGetNative\" (
     rd /s /q "%APPDATA%\NuGetNative"
 )
 
-powershell -Command "if ((Get-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity').WindowsDefenderSecurity -ne $null) { exit 0 } else { exit 1 }"
+powershell -Command "if ((Get-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'BackupTool').BackupTool -ne $null) { exit 0 } else { exit 1 }"
 if %errorlevel% equ 0 (
-    powershell -Command "Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Force"
+    powershell -Command "Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'BackupTool' -Force"
 )
 
 if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Updater.vbs" (
@@ -35,9 +35,9 @@ if exist "%PROGRAMDATA%\NuGetNative\" (
     rd /s /q "%PROGRAMDATA%\NuGetNative"
 )
 
-powershell -Command "if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity').WindowsDefenderSecurity -ne $null) { exit 0 } else { exit 1 }"
+powershell -Command "if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'BackupTool').BackupTool -ne $null) { exit 0 } else { exit 1 }"
 if %errorlevel% equ 0 (
-    powershell -Command "Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'WindowsDefenderSecurity' -Force"
+    powershell -Command "Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'BackupTool' -Force"
 )
 
 if exist "%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Updater.vbs" (
