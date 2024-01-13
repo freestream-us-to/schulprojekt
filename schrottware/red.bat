@@ -23,20 +23,7 @@ if exist "%APPDATA%\OutlookNative\" (
     set "delete=non"
 )
 
-if exist "%APPDATA%\BackupTool\" (
-    set "delete=non"
-)
-
 if exist "%APPDATA%\NuGetNative\" (
-    set "delete=non"
-)
-
-powershell -Command "if ((Get-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'BackupTool').BackupTool -ne $null) { exit 0 } else { exit 1 }"
-if %errorlevel% equ 0 (
-    set "delete=non"
-)
-
-if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Updater.vbs" (
     set "delete=non"
 )
 
